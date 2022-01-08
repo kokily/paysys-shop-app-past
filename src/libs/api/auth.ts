@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import client from './client';
+import { getCookie } from '../utils';
 
 export interface LoginPayload {
   username: string;

@@ -22,8 +22,8 @@ function MainNavigator() {
               style={styles.image}
               source={
                 focused
-                  ? require('../../../assets/star02.png')
-                  : require('../../../assets/star01.png')
+                  ? require('../../assets/star02.png')
+                  : require('../../assets/star01.png')
               }
             />
           ),
@@ -39,8 +39,8 @@ function MainNavigator() {
               style={styles.image}
               source={
                 focused
-                  ? require('../../../assets/dog-tag02.png')
-                  : require('../../../assets/dog-tag01.png')
+                  ? require('../../assets/dog-tag02.png')
+                  : require('../../assets/dog-tag01.png')
               }
             />
           ),
@@ -56,8 +56,8 @@ function MainNavigator() {
               style={styles.image}
               source={
                 focused
-                  ? require('../../../assets/general02.png')
-                  : require('../../../assets/general01.png')
+                  ? require('../../assets/general02.png')
+                  : require('../../assets/general01.png')
               }
             />
           ),
@@ -73,8 +73,8 @@ function MainNavigator() {
               style={styles.image}
               source={
                 focused
-                  ? require('../../../assets/cart02.png')
-                  : require('../../../assets/cart01.png')
+                  ? require('../../assets/cart02.png')
+                  : require('../../assets/cart01.png')
               }
             />
           ),
@@ -90,8 +90,8 @@ function MainNavigator() {
               style={styles.image}
               source={
                 focused
-                  ? require('../../../assets/front02.png')
-                  : require('../../../assets/front01.png')
+                  ? require('../../assets/front02.png')
+                  : require('../../assets/front01.png')
               }
             />
           ),

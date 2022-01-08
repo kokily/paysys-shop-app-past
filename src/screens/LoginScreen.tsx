@@ -1,11 +1,18 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import Login from '../components/auth/Login';
+import useLogin from '../libs/hooks/useLogin';
 
 function LoginScreen() {
+  const { username, setUsername, password, setPassword, onLogin } = useLogin();
+
   return (
-    <View>
-      <Text>LoginScreen</Text>
-    </View>
+    <Login
+      username={username}
+      setUsername={setUsername}
+      password={password}
+      setPassword={setPassword}
+      onLogin={onLogin}
+    />
   );
 }
 
