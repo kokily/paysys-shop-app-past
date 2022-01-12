@@ -4,9 +4,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SplashScreen from 'expo-splash-screen';
 import LoginNavigator from './LoginNavigator';
-import MainNavigator from './MainNavigator';
 import client from '../../libs/api/client';
 import { checkAPI } from '../../libs/api/auth';
+import HeaderNavigator from './HeaderNavigator';
 
 function Navigation() {
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ function Navigation() {
     }
 
     prepare();
-  }, []);
+  }, [dispatch]);
 
   const onLayout = useCallback(async () => {
     if (appReady && !checkLoading) {
@@ -46,7 +46,13 @@ function Navigation() {
 
   return (
     <NavigationContainer onReady={onLayout}>
-      {user ? <MainNavigator /> : <LoginNavigator />}
+      {user ? (
+        <>
+          <HeaderNavigator />
+        </>
+      ) : (
+        <LoginNavigator />
+      )}
     </NavigationContainer>
   );
 }

@@ -30,6 +30,7 @@ type RootStackParamList = {
   Detail: {
     id: string;
   };
+  Password: undefined;
 };
 
 interface ItemType {

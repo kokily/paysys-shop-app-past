@@ -65,3 +65,20 @@ export const checkAPI = createAsyncThunk(
     }
   }
 );
+
+export const logoutAPI = createAsyncThunk(
+  'auth/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await client.post('/auth/logout');
+      await AsyncStorage.removeItem('access_token');
+      await AsyncStorage.removeItem('refresh_token');
+
+      return response.data;
+    } catch (err: any) {
+      await AsyncStorage.removeItem('access_token');
+      await AsyncStorage.removeItem('refresh_token');
+      return rejectWithValue(err.response.data);
+    }
+  }
+);

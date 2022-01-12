@@ -1,6 +1,6 @@
 import type { PayloadAction, SerializedError } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { checkAPI, loginAPI } from '../api/auth';
+import { checkAPI, loginAPI, logoutAPI } from '../api/auth';
 
 export interface AuthState {
   user: MeType | null;
@@ -8,6 +8,8 @@ export interface AuthState {
   loginError: SerializedError | null;
   checkLoading: boolean;
   checkError: SerializedError | null;
+  logoutLoading: boolean;
+  logoutError: SerializedError | null;
 }
 
 const initialState: AuthState = {
@@ -16,6 +18,8 @@ const initialState: AuthState = {
   loginError: null,
   checkLoading: false,
   checkError: null,
+  logoutLoading: false,
+  logoutError: null,
 };
 
 const authSlice = createSlice({
@@ -52,6 +56,21 @@ const authSlice = createSlice({
     ) => {
       state.checkLoading = false;
       state.checkError = action.error;
+    },
+    [logoutAPI.pending.type]: (state) => {
+      state.logoutLoading = true;
+      state.logoutError = null;
+    },
+    [logoutAPI.fulfilled.type]: (state) => {
+      state.logoutLoading = false;
+      state.user = null;
+    },
+    [logoutAPI.rejected.type]: (
+      state,
+      action: ReturnType<typeof logoutAPI.rejected>
+    ) => {
+      state.logoutLoading = false;
+      state.logoutError = action.error;
     },
   },
 });
