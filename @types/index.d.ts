@@ -6,9 +6,9 @@ interface MeType {
 
 type RootStackParamList = {
   Login: undefined;
-  Soldier: undefined;
-  Reserve: undefined;
-  General: undefined;
+  SoldierHome: undefined;
+  ReserveHome: undefined;
+  GeneralHome: undefined;
   Cart: undefined;
   Fronts: undefined;
   FrontList: undefined;

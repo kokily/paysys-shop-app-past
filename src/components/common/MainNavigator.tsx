@@ -1,11 +1,11 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image, StyleSheet } from 'react-native';
-import SoldierScreen from '../../screens/SoldierScreen';
-import ReserveScreen from '../../screens/ReserveScreen';
-import GeneralScreen from '../../screens/GeneralScreen';
+import SoldierNavigator from './SoldierNavigator';
+import ReserveNavigator from './ReserveNavigator';
 import CartScreen from '../../screens/CartScreen';
 import FrontsScreen from '../../screens/FrontsScreen';
+import GeneralNavigator from './GeneralNavigator';
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
@@ -13,8 +13,8 @@ function MainNavigator() {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="Soldier"
-        component={SoldierScreen}
+        name="SoldierHome"
+        component={SoldierNavigator}
         options={{
           title: '현 역',
           tabBarIcon: ({ focused, color, size }) => (
@@ -30,8 +30,8 @@ function MainNavigator() {
         }}
       />
       <Tab.Screen
-        name="Reserve"
-        component={ReserveScreen}
+        name="ReserveHome"
+        component={ReserveNavigator}
         options={{
           title: '예비역',
           tabBarIcon: ({ focused, color, size }) => (
@@ -47,8 +47,8 @@ function MainNavigator() {
         }}
       />
       <Tab.Screen
-        name="General"
-        component={GeneralScreen}
+        name="GeneralHome"
+        component={GeneralNavigator}
         options={{
           title: '일 반',
           tabBarIcon: ({ focused, color, size }) => (
