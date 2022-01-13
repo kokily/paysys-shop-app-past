@@ -2,6 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import GeneralHomeScreen from '../../screens/home/GeneralHomeScreen';
+import GeneralListScreen from '../../screens/menu/GeneralListScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -14,6 +15,13 @@ function GeneralNavigator() {
           component={GeneralHomeScreen}
           options={{
             headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="GeneralList"
+          component={GeneralListScreen}
+          options={{
+            title: '이전으로',
           }}
         />
       </Stack.Navigator>
