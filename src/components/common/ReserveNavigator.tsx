@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ReserveHomeScreen from '../../screens/home/ReserveHomeScreen';
 import ReserveListScreen from '../../screens/menu/ReserveListScreen';
+import MenuDetailScreen from '../../screens/detail/MenuDetailScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -20,6 +21,13 @@ function ReserveNavigator() {
         <Stack.Screen
           name="ReserveList"
           component={ReserveListScreen}
+          options={{
+            title: '이전으로',
+          }}
+        />
+        <Stack.Screen
+          name="Detail"
+          component={MenuDetailScreen}
           options={{
             title: '이전으로',
           }}

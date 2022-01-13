@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import GeneralHomeScreen from '../../screens/home/GeneralHomeScreen';
 import GeneralListScreen from '../../screens/menu/GeneralListScreen';
+import MenuDetailScreen from '../../screens/detail/MenuDetailScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -20,6 +21,13 @@ function GeneralNavigator() {
         <Stack.Screen
           name="GeneralList"
           component={GeneralListScreen}
+          options={{
+            title: '이전으로',
+          }}
+        />
+        <Stack.Screen
+          name="Detail"
+          component={MenuDetailScreen}
           options={{
             title: '이전으로',
           }}

@@ -22,7 +22,11 @@ const initialState: MenuState = {
 const menuSlice = createSlice({
   name: 'menu',
   initialState,
-  reducers: {},
+  reducers: {
+    clearMenu: (state) => {
+      state.menu = null;
+    },
+  },
   extraReducers: {
     [listMenuAPI.pending.type]: (state) => {
       state.listMenuLoading = true;
@@ -59,5 +63,7 @@ const menuSlice = createSlice({
     },
   },
 });
+
+export const { clearMenu } = menuSlice.actions;
 
 export default menuSlice.reducer;
