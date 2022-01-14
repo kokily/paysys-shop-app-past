@@ -45,7 +45,7 @@ const ListItems: React.FC<Props> = ({
   onLoadMore,
 }) => (
   <>
-    {fronts.length === 0 ? (
+    {fronts.length < 1 ? (
       <Row style={styles.front}>
         <Col size={100}>
           <Text style={styles.frontText}>작성된 빌지가 없습니다.</Text>
@@ -62,7 +62,7 @@ const ListItems: React.FC<Props> = ({
     {hasMoreBills && (
       <Row style={styles.front} onPress={onLoadMore}>
         <Col size={100}>
-          <Text style={styles.frontText}>더 읽어오기</Text>
+          <Text style={styles.moreText}>더 읽어오기</Text>
         </Col>
       </Row>
     )}
@@ -71,15 +71,21 @@ const ListItems: React.FC<Props> = ({
 
 const styles = StyleSheet.create({
   front: {
-    height: 45,
     justifyContent: 'center',
     alignItems: 'center',
-    borderBottomWidth: 0.4,
-    borderBottomColor: '#3e98ad',
+    backgroundColor: 'white',
   },
   frontText: {
-    fontSize: 12,
-    color: '#000000',
+    fontSize: 16,
+    color: '#3E98AD',
+    textAlign: 'center',
+    paddingVertical: 10,
+  },
+  moreText: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#1e55ce',
+    paddingVertical: 10,
     textAlign: 'center',
   },
 });
