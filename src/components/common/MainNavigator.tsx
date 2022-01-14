@@ -5,6 +5,7 @@ import SoldierNavigator from './SoldierNavigator';
 import ReserveNavigator from './ReserveNavigator';
 import GeneralNavigator from './GeneralNavigator';
 import CartFrontNavigator from './CartFrontNavigator';
+import ListFrontsScreen from '../../screens/fronts/ListFrontsScreen';
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
@@ -81,8 +82,8 @@ function MainNavigator() {
         }}
       />
       <Tab.Screen
-        name="Fronts"
-        component={CartFrontNavigator}
+        name="FrontList"
+        component={ListFrontsScreen}
         options={{
           title: '전표목록',
           tabBarIcon: ({ focused, color, size }) => (

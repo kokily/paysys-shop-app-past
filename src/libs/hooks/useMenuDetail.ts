@@ -20,7 +20,12 @@ export default function useMenuDetail({ navigation, route }: Props) {
   const [count, setCount] = useState('');
 
   const onAddCart = async () => {
-    if (parseInt(count) < 1 || parseInt(price) < 1) {
+    if (
+      count === '' ||
+      price === '' ||
+      parseInt(count) < 1 ||
+      parseInt(price) < 1
+    ) {
       Alert.alert('단가와 수량을 입력하세요!');
       return;
     }

@@ -83,7 +83,6 @@ const styles = StyleSheet.create({
   header: {
     flex: 1,
     backgroundColor: '#46A678',
-    height: 45,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -101,7 +100,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomColor: '#46A678',
     borderBottomWidth: 0.4,
-    paddingVertical: 5,
+    paddingVertical: 10,
   },
   contentText: {
     fontSize: 16,

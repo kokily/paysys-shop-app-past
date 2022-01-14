@@ -1,12 +1,12 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-function FrontsScreen() {
+function ReadFrontScreen() {
   return (
     <View>
-      <Text>FrontsScreen</Text>
+      <Text>Read Front Screen</Text>
     </View>
   );
 }
 
-export default FrontsScreen;
+export default ReadFrontScreen;

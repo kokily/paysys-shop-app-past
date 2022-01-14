@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -11,41 +11,31 @@ import HeaderNavigator from './HeaderNavigator';
 function Navigation() {
   const dispatch = useDispatch();
   const { user, checkLoading } = useSelector((state) => state.auth);
-  const [appReady, setAppReady] = useState(false);
 
   useEffect(() => {
-    async function prepare() {
-      try {
-        const accessToken = await AsyncStorage.getItem('access_token');
-        const refreshToken = await AsyncStorage.getItem('refresh_token');
+    const fetchingCookie = async () => {
+      const accessToken = await AsyncStorage.getItem('access_token');
+      const refreshToken = await AsyncStorage.getItem('refresh_token');
 
-        if (accessToken && refreshToken) {
-          console.log('체크!');
-          // @ts-ignore
-          client.defaults.headers.Cookie = `access_token=${accessToken}; refresh_token=${refreshToken}`;
-        }
-
-        await SplashScreen.preventAutoHideAsync();
-        await dispatch(checkAPI());
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-      } catch (err: any) {
-        console.warn(err);
-      } finally {
-        setAppReady(true);
+      if (accessToken && refreshToken) {
+        console.log('체킹됨!');
+        // @ts-ignore
+        client.defaults.headers.Cookie = `access_token=${accessToken}; refresh_token=${refreshToken}`;
       }
-    }
+    };
 
-    prepare();
+    fetchingCookie();
+    dispatch(checkAPI());
   }, [dispatch]);
 
-  const onLayout = useCallback(async () => {
-    if (appReady && !checkLoading) {
-      await SplashScreen.hideAsync();
+  useEffect(() => {
+    if (!checkLoading) {
+      SplashScreen.hideAsync();
     }
-  }, [appReady, checkLoading]);
+  }, [dispatch]);
 
   return (
-    <NavigationContainer onReady={onLayout}>
+    <NavigationContainer>
       {user ? (
         <>
           <HeaderNavigator />

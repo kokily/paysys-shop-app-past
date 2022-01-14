@@ -1,5 +1,6 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { StyleSheet } from 'react-native';
+import type { Dispatch, SetStateAction } from 'react';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-elements';
 import AppTemplate from '../common/AppTemplate';
 import CartButtons from './common/CartButtons';
@@ -39,7 +40,7 @@ const Cart: React.FC<Props> = ({
       전표 확인(종합)
     </Text>
 
-    {cart && (
+    {cart ? (
       <>
         <CartTable items={cart.items} onRemoveOneCart={onRemoveOneCart} />
         <TotalAmount total={totalAmount} />
@@ -53,6 +54,10 @@ const Cart: React.FC<Props> = ({
         />
         <CartButtons onAddBill={onAddBill} onRemoveCart={onRemoveCart} />
       </>
+    ) : (
+      <View style={styles.noneContainer}>
+        <Text style={styles.none}>추가된 항목이 없습니다</Text>
+      </View>
     )}
   </AppTemplate>
 );
@@ -62,6 +67,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginVertical: 10,
+  },
+  noneContainer: {
+    flex: 1,
+    marginVertical: 10,
+    alignItems: 'center',
+  },
+  none: {
+    fontSize: 20,
   },
 });
 

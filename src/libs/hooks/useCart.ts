@@ -32,15 +32,31 @@ export default function useCart({ navigation }: Props) {
   };
 
   const onRemoveCart = async () => {
-    await dispatch(removeCartAPI());
-    await dispatch(viewCartAPI());
+    Alert.alert('경고!', '품목이 전량 삭제됩니다', [
+      { text: '취소', onPress: () => console.log('취소') },
+      {
+        text: '삭제',
+        onPress: async () => {
+          await dispatch(removeCartAPI());
+          await dispatch(clearCart());
+          await dispatch(viewCartAPI());
+        },
+      },
+    ]);
   };
 
   const onRemoveOneCart = async (id: string, name: string) => {
-    Alert.alert(`${name} 품목을 삭제합니다.`);
-    await dispatch(removeOneCartAPI(id));
-    await dispatch(clearCart());
-    await dispatch(viewCartAPI());
+    Alert.alert('경고', `${name} 품목을 삭제합니다.`, [
+      { text: '취소', onPress: () => console.log('취소') },
+      {
+        text: '삭제',
+        onPress: async () => {
+          await dispatch(removeOneCartAPI(id));
+          await dispatch(clearCart());
+          await dispatch(viewCartAPI());
+        },
+      },
+    ]);
   };
 
   useEffect(() => {
