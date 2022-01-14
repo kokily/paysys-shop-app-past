@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import auth from './auth';
+import bills from './bills';
 import cart from './cart';
 import menu from './menu';
 
 const rootReducer = combineReducers({
   auth,
+  bills,
   cart,
   menu,
 });

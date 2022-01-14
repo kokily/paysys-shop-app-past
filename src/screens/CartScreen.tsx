@@ -1,11 +1,45 @@
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import { Text, View } from 'react-native';
+import Cart from '../components/cart/Cart';
+import Loading from '../components/common/Loading';
+import useCart from '../libs/hooks/useCart';
 
-function CartScreen() {
+interface Props {
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Cart'>;
+}
+
+function CartScreen({ navigation }: Props) {
+  const {
+    cart,
+    loading,
+    title,
+    setTitle,
+    hall,
+    setHall,
+    etc,
+    setEtc,
+    totalAmount,
+    onAddBill,
+    onRemoveCart,
+    onRemoveOneCart,
+  } = useCart({ navigation });
+
+  if (loading) return <Loading />;
+
   return (
-    <View>
-      <Text>CartScreen</Text>
-    </View>
+    <Cart
+      cart={cart}
+      title={title}
+      setTitle={setTitle}
+      hall={hall}
+      setHall={setHall}
+      etc={etc}
+      setEtc={setEtc}
+      totalAmount={totalAmount}
+      onAddBill={onAddBill}
+      onRemoveCart={onRemoveCart}
+      onRemoveOneCart={onRemoveOneCart}
+    />
   );
 }
 

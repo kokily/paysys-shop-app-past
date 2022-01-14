@@ -3,9 +3,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image, StyleSheet } from 'react-native';
 import SoldierNavigator from './SoldierNavigator';
 import ReserveNavigator from './ReserveNavigator';
-import CartScreen from '../../screens/CartScreen';
-import FrontsScreen from '../../screens/FrontsScreen';
 import GeneralNavigator from './GeneralNavigator';
+import CartFrontNavigator from './CartFrontNavigator';
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
@@ -65,9 +64,10 @@ function MainNavigator() {
       />
       <Tab.Screen
         name="Cart"
-        component={CartScreen}
+        component={CartFrontNavigator}
         options={{
           title: '전표확인',
+          unmountOnBlur: true,
           tabBarIcon: ({ focused, color, size }) => (
             <Image
               style={styles.image}
@@ -82,7 +82,7 @@ function MainNavigator() {
       />
       <Tab.Screen
         name="Fronts"
-        component={FrontsScreen}
+        component={CartFrontNavigator}
         options={{
           title: '전표목록',
           tabBarIcon: ({ focused, color, size }) => (

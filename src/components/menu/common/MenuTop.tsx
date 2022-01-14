@@ -25,7 +25,10 @@ const MenuTop: React.FC<Props> = ({ menu, price, setPrice }) => (
       <Col size={30}>
         <Text style={styles.contentText}>단 가</Text>
       </Col>
-      <Col size={70} style={menu.price === 0 ? { padding: 5, height: 2 } : {}}>
+      <Col
+        size={70}
+        style={menu.price === 0 ? { height: 40 } : {}}
+      >
         {menu.price === 0 ? (
           <Input
             placeholder="단가를 입력하세요"
@@ -72,9 +75,10 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    fontSize: 15,
+    fontSize: 14,
     textAlign: 'center',
     color: 'white',
+    paddingVertical: 5,
   },
 });
 

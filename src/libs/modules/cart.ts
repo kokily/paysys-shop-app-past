@@ -1,6 +1,11 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { addCartAPI, viewCartAPI } from '../api/cart';
+import {
+  addCartAPI,
+  removeCartAPI,
+  removeOneCartAPI,
+  viewCartAPI,
+} from '../api/cart';
 
 export interface CartState {
   cart: CartType | null;
@@ -31,7 +36,11 @@ const initialState: CartState = {
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
-  reducers: {},
+  reducers: {
+    clearCart: (state) => {
+      state.cart = null;
+    },
+  },
   extraReducers: {
     [addCartAPI.pending.type]: (state) => {
       state.addCartLoading = true;
@@ -44,7 +53,78 @@ const cartSlice = createSlice({
       state.addCartLoading = false;
       state.addCartError = action.payload;
     },
+    [viewCartAPI.pending.type]: (state) => {
+      state.viewCartLoading = true;
+      state.viewCartError = null;
+    },
+    [viewCartAPI.fulfilled.type]: (state, action: PayloadAction<CartType>) => {
+      state.viewCartLoading = false;
+      state.cart = action.payload;
+
+      let total = 0;
+      let list = state.cart.items;
+
+      if (list) {
+        for (let key in list) {
+          total += list[key].amount;
+        }
+      }
+
+      state.totalAmount = total;
+    },
+    [viewCartAPI.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.viewCartLoading = false;
+      state.viewCartError = action.payload;
+      state.cart = null;
+      state.totalAmount = 0;
+    },
+    [removeCartAPI.pending.type]: (state) => {
+      state.removeCartLoading = true;
+      state.removeCartError = null;
+    },
+    [removeCartAPI.fulfilled.type]: (state) => {
+      state.removeCartLoading = false;
+      state.cart = null;
+      state.totalAmount = 0;
+    },
+    [removeCartAPI.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.removeCartLoading = false;
+      state.removeCartError = action.payload;
+    },
+    [removeOneCartAPI.pending.type]: (state) => {
+      state.removeOneCartLoading = true;
+      state.removeOneCartError = null;
+    },
+    [removeOneCartAPI.fulfilled.type]: (
+      state,
+      action: PayloadAction<CartType>
+    ) => {
+      state.removeOneCartLoading = false;
+      state.cart = action.payload;
+
+      let total = 0;
+      let list = state.cart.items;
+
+      if (list) {
+        for (let key in list) {
+          total += list[key].amount;
+        }
+
+        state.totalAmount = total;
+      } else {
+        state.totalAmount = 0;
+      }
+    },
+    [removeOneCartAPI.rejected.type]: (
+      state,
+      action: PayloadAction<string>
+    ) => {
+      state.removeOneCartLoading = false;
+      state.removeOneCartError = action.payload;
+    },
   },
 });
+
+export const { clearCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
