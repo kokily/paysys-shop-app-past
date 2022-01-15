@@ -35,10 +35,13 @@ const ReadFront: React.FC<Props> = ({
         <ReadFrontTable front={front} />
         <TotalAmount total={front.total_amount} />
 
-        <ReadFrontButtons
-          onRemoveBill={onRemoveBill}
-          onRestoreBill={onRestoreBill}
-        />
+        {(user.user_id === front.user_id || user.admin) && (
+          <ReadFrontButtons
+            user={user}
+            onRemoveBill={onRemoveBill}
+            onRestoreBill={onRestoreBill}
+          />
+        )}
       </>
     )}
   </AppTemplate>

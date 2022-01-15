@@ -37,7 +37,7 @@ function HeaderNavigator() {
       }}
     >
       <Drawer.Screen
-        name="Soldier"
+        name="SoldierList"
         component={MainNavigator}
         options={{
           title: '첫 메뉴로',
@@ -49,6 +49,7 @@ function HeaderNavigator() {
         component={PasswordScreen}
         options={{
           drawerLabel: '비밀번호 변경',
+          title: '비밀번호 변경',
         }}
       />
     </Drawer.Navigator>

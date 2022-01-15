@@ -1,11 +1,16 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import Password from '../components/users/Password';
+import usePassword from '../libs/hooks/usePassword';
 
 function PasswordScreen() {
+  const { password, setPassword, onChangePassword } = usePassword();
+
   return (
-    <View>
-      <Text>Password Screen</Text>
-    </View>
+    <Password
+      password={password}
+      setPassword={setPassword}
+      onChangePassword={onChangePassword}
+    />
   );
 }
 

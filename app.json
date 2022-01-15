@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#52F9D1"
-      }
+      },
+      "package": "com.paysysshopapp"
     },
     "web": {
       "favicon": "./src/assets/favicon.png"

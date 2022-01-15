@@ -3,27 +3,40 @@ import { StyleSheet, View } from 'react-native';
 import { Button } from 'react-native-elements';
 
 interface Props {
+  user: MeType;
   onRemoveBill: () => void;
   onRestoreBill: () => void;
 }
 
-function ReadFrontButtons({ onRemoveBill, onRestoreBill }: Props) {
+function ReadFrontButtons({ user, onRemoveBill, onRestoreBill }: Props) {
   return (
     <View style={styles.buttonGroup}>
-      <Button
-        title="삭 제"
-        type="solid"
-        buttonStyle={[styles.button, styles.remove]}
-        titleStyle={styles.remove}
-        onPress={onRemoveBill}
-      />
-      <Button
-        title="수 정"
-        type="solid"
-        buttonStyle={[styles.button, styles.restore]}
-        titleStyle={styles.restore}
-        onPress={onRestoreBill}
-      />
+      {user.admin ? (
+        <Button
+          title="삭 제"
+          type="solid"
+          buttonStyle={[styles.button, styles.remove]}
+          titleStyle={styles.remove}
+          onPress={onRemoveBill}
+        />
+      ) : (
+        <>
+          <Button
+            title="삭 제"
+            type="solid"
+            buttonStyle={[styles.button, styles.remove]}
+            titleStyle={styles.remove}
+            onPress={onRemoveBill}
+          />
+          <Button
+            title="수 정"
+            type="solid"
+            buttonStyle={[styles.button, styles.restore]}
+            titleStyle={styles.restore}
+            onPress={onRestoreBill}
+          />
+        </>
+      )}
     </View>
   );
 }
