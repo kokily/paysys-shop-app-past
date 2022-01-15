@@ -1,24 +1,33 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { StyleSheet } from 'react-native';
 import { Col, Grid, Row } from 'react-native-easy-grid';
 import { Text } from 'react-native-elements';
 import AppTemplate from '../common/AppTemplate';
 import ListItems from './common/ListItems';
+import Search from './common/Search';
 
 interface Props {
   fronts: BillType[];
   hasMoreBills: boolean;
+  title: string;
+  setTitle: Dispatch<SetStateAction<string>>;
   onReadFront: (id: string) => void;
   onLoadMore: () => void;
+  onSearch: () => void;
 }
 
 const ListFronts: React.FC<Props> = ({
   fronts,
   hasMoreBills,
+  title,
+  setTitle,
   onReadFront,
   onLoadMore,
+  onSearch,
 }) => (
   <AppTemplate>
+    <Search title={title} setTitle={setTitle} onSearch={onSearch} />
+
     <Grid style={styles.table}>
       <Row style={styles.header}>
         <Col size={20}>

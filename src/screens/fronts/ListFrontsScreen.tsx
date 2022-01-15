@@ -9,8 +9,16 @@ interface Props {
 }
 
 function ListFrontsScreen({ navigation }: Props) {
-  const { fronts, loading, hasMoreBills, onReadFront, onLoadMore } =
-    useListFronts({ navigation });
+  const {
+    fronts,
+    loading,
+    hasMoreBills,
+    title,
+    setTitle,
+    onReadFront,
+    onLoadMore,
+    onSearch,
+  } = useListFronts({ navigation });
 
   if (loading) return <Loading />;
 
@@ -18,8 +26,11 @@ function ListFrontsScreen({ navigation }: Props) {
     <ListFronts
       fronts={fronts}
       hasMoreBills={hasMoreBills}
+      title={title}
+      setTitle={setTitle}
       onReadFront={onReadFront}
       onLoadMore={onLoadMore}
+      onSearch={onSearch}
     />
   );
 }

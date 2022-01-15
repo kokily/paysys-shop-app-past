@@ -86,6 +86,7 @@ function MainNavigator() {
         component={FrontNavigation}
         options={{
           headerShown: false,
+          unmountOnBlur: true,
           tabBarIcon: ({ focused, color, size }) => (
             <Image
               style={styles.image}
