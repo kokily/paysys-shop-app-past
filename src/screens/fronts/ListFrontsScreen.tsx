@@ -25,6 +25,7 @@ function ListFrontsScreen({ navigation }: Props) {
   return (
     <ListFronts
       fronts={fronts}
+      loading={loading}
       hasMoreBills={hasMoreBills}
       title={title}
       setTitle={setTitle}

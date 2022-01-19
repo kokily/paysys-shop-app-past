@@ -1,5 +1,5 @@
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { listBillsAPI } from '../api/bills';
 import { clearBills } from '../modules/bills';
@@ -13,7 +13,6 @@ export default function useListFronts({ navigation }: Props) {
   const { bills, hasMoreBills, listBillsLoading } = useSelector(
     (state) => state.bills
   );
-  const [cursor, setCursor] = useState('');
 
   // Search State
   const [title, setTitle] = useState('');
@@ -22,15 +21,15 @@ export default function useListFronts({ navigation }: Props) {
     navigation.navigate('FrontRead', { id });
   };
 
-  const onLoadMore = async () => {
+  const onLoadMore = useCallback(() => {
     if (hasMoreBills && !listBillsLoading) {
       const lastId = bills[bills.length - 1]?.id;
-      setCursor(lastId);
-      await dispatch(listBillsAPI({ cursor, title }));
+      dispatch(listBillsAPI({ cursor: lastId, title }));
+      console.log(bills.length);
     }
-  };
+  }, [hasMoreBills, listBillsLoading, bills]);
 
-  const onSearch = async () => {
+  const onSearch = useCallback(() => {
     if (title === '') {
       dispatch(clearBills());
       dispatch(listBillsAPI({}));
@@ -38,13 +37,15 @@ export default function useListFronts({ navigation }: Props) {
       dispatch(clearBills());
       dispatch(listBillsAPI({ title }));
     }
-  };
+  }, [title]);
 
   useEffect(() => {
-    setTitle('');
-    dispatch(clearBills());
     dispatch(listBillsAPI({ title }));
-  }, []);
+
+    return () => {
+      dispatch(clearBills());
+    };
+  }, [dispatch]);
 
   return {
     fronts: bills,
@@ -54,6 +55,6 @@ export default function useListFronts({ navigation }: Props) {
     setTitle,
     onReadFront,
     onLoadMore,
-    onSearch
+    onSearch,
   };
 }

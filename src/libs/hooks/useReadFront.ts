@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { readBillAPI, removeBillAPI, restoreBillAPI } from '../api/bills';
+import { clearBill } from '../modules/bills';
 
 interface Props {
   navigation: NativeStackNavigationProp<RootStackParamList, 'FrontRead'>;
@@ -56,7 +57,11 @@ export default function useReadFront({ navigation, route }: Props) {
 
   useEffect(() => {
     dispatch(readBillAPI(id));
-  }, []);
+
+    return () => {
+      dispatch(clearBill());
+    };
+  }, [dispatch]);
 
   return {
     front: bill,
