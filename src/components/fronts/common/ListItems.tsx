@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { FlatList, ActivityIndicator } from 'react-native';
 import ListItem from './ListItem';
 
@@ -17,8 +17,11 @@ const ListItems: React.FC<Props> = ({
   onLoadMore,
   onReadFront,
 }) => {
-  const renderItem = ({ item }: { item: BillType }) => (
-    <ListItem front={item} onReadFront={onReadFront} />
+  const renderItem = useCallback(
+    ({ item }: { item: BillType }) => (
+      <ListItem front={item} onReadFront={onReadFront} />
+    ),
+    []
   );
 
   const memoziedItem = useMemo(() => renderItem, [fronts]);
@@ -32,6 +35,7 @@ const ListItems: React.FC<Props> = ({
       disableVirtualization={false}
       onEndReached={onLoadMore}
       onEndReachedThreshold={0.1}
+      windowSize={10}
     />
   );
 };

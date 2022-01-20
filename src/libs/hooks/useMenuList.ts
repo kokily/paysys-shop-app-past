@@ -5,18 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { listMenuAPI } from '../api/menu';
 
 interface Props {
-  navigation: NativeStackNavigationProp<
-    RootStackParamList,
-    'SoldierList' | 'ReserveList' | 'GeneralList'
-  >;
-  route: RouteProp<
-    RootStackParamList,
-    'SoldierList' | 'ReserveList' | 'GeneralList'
-  >;
+  navigation: NativeStackNavigationProp<RootStackParamList>;
+  route: RouteProp<RootStackParamList>;
 }
 
 export default function useMenuList({ navigation, route }: Props) {
-  const { native, divide } = route.params;
+  const { native, divide }: any = route.params;
   const dispatch = useDispatch();
   const { menus, listMenuLoading } = useSelector((state) => state.menu);
 

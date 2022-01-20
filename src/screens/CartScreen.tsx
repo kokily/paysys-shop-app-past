@@ -3,12 +3,14 @@ import React from 'react';
 import Cart from '../components/cart/Cart';
 import Loading from '../components/common/Loading';
 import useCart from '../libs/hooks/useCart';
+import useLoggedIn from '../libs/hooks/useLoggedIn';
 
 interface Props {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'Cart'>;
+  navigation: NativeStackNavigationProp<RootStackParamList>;
 }
 
 function CartScreen({ navigation }: Props) {
+  useLoggedIn({ navigation });
   const {
     cart,
     loading,

@@ -1,15 +1,15 @@
-import type { PayloadAction, SerializedError } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { checkAPI, loginAPI, logoutAPI } from '../api/auth';
 
 export interface AuthState {
   user: MeType | null;
   loginLoading: boolean;
-  loginError: SerializedError | null;
+  loginError: string | null;
   checkLoading: boolean;
-  checkError: SerializedError | null;
+  checkError: string | null;
   logoutLoading: boolean;
-  logoutError: SerializedError | null;
+  logoutError: string | null;
 }
 
 const initialState: AuthState = {
@@ -35,12 +35,9 @@ const authSlice = createSlice({
       state.loginLoading = false;
       state.user = action.payload;
     },
-    [loginAPI.rejected.type]: (
-      state,
-      action: ReturnType<typeof loginAPI.rejected>
-    ) => {
+    [loginAPI.rejected.type]: (state, action: PayloadAction<string>) => {
       state.loginLoading = false;
-      state.loginError = action.error;
+      state.loginError = action.payload;
     },
     [checkAPI.pending.type]: (state) => {
       state.checkLoading = true;
@@ -50,12 +47,9 @@ const authSlice = createSlice({
       state.checkLoading = false;
       state.user = action.payload;
     },
-    [checkAPI.rejected.type]: (
-      state,
-      action: ReturnType<typeof checkAPI.rejected>
-    ) => {
+    [checkAPI.rejected.type]: (state, action: PayloadAction<string>) => {
       state.checkLoading = false;
-      state.checkError = action.error;
+      state.checkError = action.payload;
     },
     [logoutAPI.pending.type]: (state) => {
       state.logoutLoading = true;
@@ -65,12 +59,9 @@ const authSlice = createSlice({
       state.logoutLoading = false;
       state.user = null;
     },
-    [logoutAPI.rejected.type]: (
-      state,
-      action: ReturnType<typeof logoutAPI.rejected>
-    ) => {
+    [logoutAPI.rejected.type]: (state, action: PayloadAction<string>) => {
       state.logoutLoading = false;
-      state.logoutError = action.error;
+      state.logoutError = action.payload;
     },
   },
 });

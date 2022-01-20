@@ -3,12 +3,14 @@ import React from 'react';
 import Loading from '../../components/common/Loading';
 import ListFronts from '../../components/fronts/ListFronts';
 import useListFronts from '../../libs/hooks/useListFronts';
+import useLoggedIn from '../../libs/hooks/useLoggedIn';
 
 interface Props {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'FrontList'>;
+  navigation: NativeStackNavigationProp<RootStackParamList>;
 }
 
 function ListFrontsScreen({ navigation }: Props) {
+  useLoggedIn({ navigation });
   const {
     fronts,
     loading,

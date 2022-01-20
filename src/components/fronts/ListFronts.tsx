@@ -30,7 +30,7 @@ const ListFronts: React.FC<Props> = ({
   onSearch,
 }) => (
   <ListFrontsTemplate>
-    <ScrollView>
+    <ScrollView scrollEnabled={false}>
       <Search title={title} setTitle={setTitle} onSearch={onSearch} />
 
       <Grid style={styles.table}>

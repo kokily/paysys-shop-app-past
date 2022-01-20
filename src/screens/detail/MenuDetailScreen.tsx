@@ -3,13 +3,15 @@ import type { RouteProp } from '@react-navigation/native';
 import useMenuDetail from '../../libs/hooks/useMenuDetail';
 import Loading from '../../components/common/Loading';
 import MenuDetail from '../../components/menu/MenuDetail';
+import useLoggedIn from '../../libs/hooks/useLoggedIn';
 
 interface Props {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'Detail'>;
-  route: RouteProp<RootStackParamList, 'Detail'>;
+  navigation: NativeStackNavigationProp<RootStackParamList>;
+  route: RouteProp<RootStackParamList>;
 }
 
 function MenuDetailScreen({ navigation, route }: Props) {
+  useLoggedIn({ navigation });
   const { menu, loading, price, setPrice, count, setCount, onAddCart, onBack } =
     useMenuDetail({ navigation, route });
 

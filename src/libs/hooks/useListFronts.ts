@@ -5,7 +5,7 @@ import { listBillsAPI } from '../api/bills';
 import { clearBills } from '../modules/bills';
 
 interface Props {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'FrontList'>;
+  navigation: NativeStackNavigationProp<RootStackParamList>;
 }
 
 export default function useListFronts({ navigation }: Props) {

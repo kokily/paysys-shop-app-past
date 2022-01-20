@@ -4,13 +4,15 @@ import React from 'react';
 import Loading from '../../components/common/Loading';
 import useMenuList from '../../libs/hooks/useMenuList';
 import SoldierList from '../../components/menu/SoldierList';
+import useLoggedIn from '../../libs/hooks/useLoggedIn';
 
 interface Props {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'SoldierList'>;
-  route: RouteProp<RootStackParamList, 'SoldierList'>;
+  navigation: NativeStackNavigationProp<RootStackParamList>;
+  route: RouteProp<RootStackParamList>;
 }
 
 function SoldierListScreen({ navigation, route }: Props) {
+  useLoggedIn({ navigation });
   const { menus, divide, loading, onReadMenu } = useMenuList({
     navigation,
     route,

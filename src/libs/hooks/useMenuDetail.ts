@@ -8,12 +8,12 @@ import { readMenuAPI } from '../api/menu';
 import { clearMenu } from '../modules/menu';
 
 interface Props {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'Detail'>;
-  route: RouteProp<RootStackParamList, 'Detail'>;
+  navigation: NativeStackNavigationProp<RootStackParamList>;
+  route: RouteProp<RootStackParamList>;
 }
 
 export default function useMenuDetail({ navigation, route }: Props) {
-  const { id } = route.params;
+  const { id }: any = route.params;
   const dispatch = useDispatch();
   const { menu, readMenuLoading } = useSelector((state) => state.menu);
   const [price, setPrice] = useState('');

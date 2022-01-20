@@ -4,13 +4,15 @@ import React from 'react';
 import Loading from '../../components/common/Loading';
 import useMenuList from '../../libs/hooks/useMenuList';
 import ReserveList from '../../components/menu/ReserveList';
+import useLoggedIn from '../../libs/hooks/useLoggedIn';
 
 interface Props {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'ReserveList'>;
-  route: RouteProp<RootStackParamList, 'ReserveList'>;
+  navigation: NativeStackNavigationProp<RootStackParamList>;
+  route: RouteProp<RootStackParamList>;
 }
 
 function ReserveListScreen({ navigation, route }: Props) {
+  useLoggedIn({ navigation });
   const { menus, divide, loading, onReadMenu } = useMenuList({
     navigation,
     route,

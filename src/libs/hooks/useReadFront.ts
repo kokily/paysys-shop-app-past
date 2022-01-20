@@ -7,12 +7,12 @@ import { readBillAPI, removeBillAPI, restoreBillAPI } from '../api/bills';
 import { clearBill } from '../modules/bills';
 
 interface Props {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'FrontRead'>;
-  route: RouteProp<RootStackParamList, 'FrontRead'>;
+  navigation: NativeStackNavigationProp<RootStackParamList>;
+  route: RouteProp<RootStackParamList>;
 }
 
 export default function useReadFront({ navigation, route }: Props) {
-  const { id } = route.params;
+  const { id }: any = route.params;
   const dispatch = useDispatch();
   const { bill, readBillLoading } = useSelector((state) => state.bills);
   const { user } = useSelector((state) => state.auth);
