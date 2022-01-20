@@ -1,17 +1,11 @@
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { checkAPI } from '../api/auth';
 
-interface Props {
-  navigation: NativeStackNavigationProp<RootStackParamList>;
-}
-
-export default function useLoggedIn({ navigation }: Props) {
-  const { user, checkLoading, checkError } = useSelector((state) => state.auth);
+export default function useLoggedIn() {
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!checkLoading && !user && checkError) {
-      navigation.navigate('Login');
-    }
+    dispatch(checkAPI());
   }, []);
 }

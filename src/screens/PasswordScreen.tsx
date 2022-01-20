@@ -1,15 +1,10 @@
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import Password from '../components/users/Password';
 import useLoggedIn from '../libs/hooks/useLoggedIn';
 import usePassword from '../libs/hooks/usePassword';
 
-interface Props {
-  navigation: NativeStackNavigationProp<RootStackParamList>;
-}
-
-function PasswordScreen({ navigation }: Props) {
-  useLoggedIn({ navigation });
+function PasswordScreen() {
+  useLoggedIn();
   const { password, setPassword, onChangePassword } = usePassword();
 
   return (

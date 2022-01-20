@@ -13,6 +13,7 @@ export interface BillsState {
   bills: BillType[];
   bill: BillType | null;
   hasMoreBills: boolean;
+  title: string;
   addBillLoading: boolean;
   addBillError: string | null;
   listBillsLoading: boolean;
@@ -29,6 +30,7 @@ const initialState: BillsState = {
   bills: [],
   bill: null,
   hasMoreBills: true,
+  title: '',
   addBillLoading: false,
   addBillError: null,
   listBillsLoading: false,
@@ -50,6 +52,9 @@ const billsSlice = createSlice({
     },
     clearBill: (state) => {
       state.bill = null;
+    },
+    changeTitle: (state, action: PayloadAction<string>) => {
+      state.title = action.payload;
     },
   },
   extraReducers: {
@@ -121,6 +126,6 @@ const billsSlice = createSlice({
   },
 });
 
-export const { clearBills, clearBill } = billsSlice.actions;
+export const { clearBills, clearBill, changeTitle } = billsSlice.actions;
 
 export default billsSlice.reducer;

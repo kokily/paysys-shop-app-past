@@ -1,3 +1,4 @@
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { Dispatch, SetStateAction } from 'react';
 import React from 'react';
 import { StyleSheet } from 'react-native';
@@ -9,29 +10,21 @@ import ListItems from './common/ListItems';
 import Search from './common/Search';
 
 interface Props {
-  fronts: BillType[];
-  loading: boolean;
-  hasMoreBills: boolean;
-  title: string;
-  setTitle: Dispatch<SetStateAction<string>>;
-  onReadFront: (id: string) => void;
-  onLoadMore: () => void;
+  search: string;
+  setSearch: Dispatch<SetStateAction<string>>;
   onSearch: () => void;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'FrontList'>;
 }
 
 const ListFronts: React.FC<Props> = ({
-  fronts,
-  loading,
-  hasMoreBills,
-  title,
-  setTitle,
-  onReadFront,
-  onLoadMore,
+  search,
+  setSearch,
   onSearch,
+  navigation,
 }) => (
   <ListFrontsTemplate>
     <ScrollView scrollEnabled={false}>
-      <Search title={title} setTitle={setTitle} onSearch={onSearch} />
+      <Search title={search} setTitle={setSearch} onSearch={onSearch} />
 
       <Grid style={styles.table}>
         <Row style={styles.header}>
@@ -51,13 +44,7 @@ const ListFronts: React.FC<Props> = ({
       </Grid>
     </ScrollView>
 
-    <ListItems
-      fronts={fronts}
-      loading={loading}
-      hasMoreBills={hasMoreBills}
-      onReadFront={onReadFront}
-      onLoadMore={onLoadMore}
-    />
+    <ListItems navigation={navigation} />
   </ListFrontsTemplate>
 );
 

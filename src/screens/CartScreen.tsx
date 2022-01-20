@@ -6,11 +6,11 @@ import useCart from '../libs/hooks/useCart';
 import useLoggedIn from '../libs/hooks/useLoggedIn';
 
 interface Props {
-  navigation: NativeStackNavigationProp<RootStackParamList>;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Cart'>;
 }
 
 function CartScreen({ navigation }: Props) {
-  useLoggedIn({ navigation });
+  useLoggedIn();
   const {
     cart,
     loading,

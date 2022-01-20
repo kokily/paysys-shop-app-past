@@ -7,12 +7,18 @@ import ReserveList from '../../components/menu/ReserveList';
 import useLoggedIn from '../../libs/hooks/useLoggedIn';
 
 interface Props {
-  navigation: NativeStackNavigationProp<RootStackParamList>;
-  route: RouteProp<RootStackParamList>;
+  navigation: NativeStackNavigationProp<
+    RootStackParamList,
+    'SoldierList' | 'ReserveList' | 'GeneralList'
+  >;
+  route: RouteProp<
+    RootStackParamList,
+    'SoldierList' | 'ReserveList' | 'GeneralList'
+  >;
 }
 
 function ReserveListScreen({ navigation, route }: Props) {
-  useLoggedIn({ navigation });
+  useLoggedIn();
   const { menus, divide, loading, onReadMenu } = useMenuList({
     navigation,
     route,

@@ -8,8 +8,8 @@ import { readMenuAPI } from '../api/menu';
 import { clearMenu } from '../modules/menu';
 
 interface Props {
-  navigation: NativeStackNavigationProp<RootStackParamList>;
-  route: RouteProp<RootStackParamList>;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Detail'>;
+  route: RouteProp<RootStackParamList, 'Detail'>;
 }
 
 export default function useMenuDetail({ navigation, route }: Props) {

@@ -7,12 +7,18 @@ import GeneralList from '../../components/menu/GeneralList';
 import useLoggedIn from '../../libs/hooks/useLoggedIn';
 
 interface Props {
-  navigation: NativeStackNavigationProp<RootStackParamList>;
-  route: RouteProp<RootStackParamList>;
+  navigation: NativeStackNavigationProp<
+    RootStackParamList,
+    'SoldierList' | 'ReserveList' | 'GeneralList'
+  >;
+  route: RouteProp<
+    RootStackParamList,
+    'SoldierList' | 'ReserveList' | 'GeneralList'
+  >;
 }
 
 function GeneralListScreen({ navigation, route }: Props) {
-  useLoggedIn({ navigation });
+  useLoggedIn();
   const { menus, divide, loading, onReadMenu } = useMenuList({
     navigation,
     route,

@@ -38,6 +38,7 @@ const authSlice = createSlice({
     [loginAPI.rejected.type]: (state, action: PayloadAction<string>) => {
       state.loginLoading = false;
       state.loginError = action.payload;
+      state.user = null;
     },
     [checkAPI.pending.type]: (state) => {
       state.checkLoading = true;
@@ -50,6 +51,7 @@ const authSlice = createSlice({
     [checkAPI.rejected.type]: (state, action: PayloadAction<string>) => {
       state.checkLoading = false;
       state.checkError = action.payload;
+      state.user = null;
     },
     [logoutAPI.pending.type]: (state) => {
       state.logoutLoading = true;

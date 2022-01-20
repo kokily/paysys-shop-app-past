@@ -6,12 +6,12 @@ import MenuDetail from '../../components/menu/MenuDetail';
 import useLoggedIn from '../../libs/hooks/useLoggedIn';
 
 interface Props {
-  navigation: NativeStackNavigationProp<RootStackParamList>;
-  route: RouteProp<RootStackParamList>;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Detail'>;
+  route: RouteProp<RootStackParamList, 'Detail'>;
 }
 
 function MenuDetailScreen({ navigation, route }: Props) {
-  useLoggedIn({ navigation });
+  useLoggedIn();
   const { menu, loading, price, setPrice, count, setCount, onAddCart, onBack } =
     useMenuDetail({ navigation, route });
 

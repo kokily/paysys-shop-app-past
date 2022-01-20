@@ -7,8 +7,8 @@ import { readBillAPI, removeBillAPI, restoreBillAPI } from '../api/bills';
 import { clearBill } from '../modules/bills';
 
 interface Props {
-  navigation: NativeStackNavigationProp<RootStackParamList>;
-  route: RouteProp<RootStackParamList>;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'FrontRead'>;
+  route: RouteProp<RootStackParamList, 'FrontRead'>;
 }
 
 export default function useReadFront({ navigation, route }: Props) {

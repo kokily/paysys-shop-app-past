@@ -6,8 +6,8 @@ import ReadFront from '../../components/fronts/ReadFront';
 import useReadFront from '../../libs/hooks/useReadFront';
 
 interface Props {
-  navigation: NativeStackNavigationProp<RootStackParamList>;
-  route: RouteProp<RootStackParamList>;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'FrontRead'>;
+  route: RouteProp<RootStackParamList, 'FrontRead'>;
 }
 
 function ReadFrontScreen({ navigation, route }: Props) {

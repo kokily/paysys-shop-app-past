@@ -1,43 +1,41 @@
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { listBillsAPI } from '../api/bills';
-import { clearBills } from '../modules/bills';
+import { changeTitle, clearBills } from '../modules/bills';
 
 interface Props {
-  navigation: NativeStackNavigationProp<RootStackParamList>;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'FrontList'>;
 }
 
 export default function useListFronts({ navigation }: Props) {
   const dispatch = useDispatch();
-  const { bills, hasMoreBills, listBillsLoading } = useSelector(
+  const { bills, hasMoreBills, listBillsLoading, title } = useSelector(
     (state) => state.bills
   );
-
-  // Search State
-  const [title, setTitle] = useState('');
+  const [search, setSearch] = useState('');
 
   const onReadFront = (id: string) => {
     navigation.navigate('FrontRead', { id });
   };
 
-  const onLoadMore = useCallback(() => {
-    if (hasMoreBills && !listBillsLoading) {
-      const lastId = bills[bills.length - 1]?.id;
-      dispatch(listBillsAPI({ cursor: lastId, title }));
-      console.log(bills.length);
-    }
-  }, [hasMoreBills, listBillsLoading, bills]);
+  const onLoadMore = async () => {
+    const lastId = bills[bills.length - 1]?.id;
+    console.log(lastId, title);
+    await dispatch(listBillsAPI({ cursor: lastId, title }));
+  };
 
-  const onSearch = useCallback(() => {
-    if (title === '') {
-      dispatch(clearBills());
-      dispatch(listBillsAPI({}));
+  const onSearch = async () => {
+    if (search === '') {
+      await dispatch(changeTitle(''));
+      await dispatch(clearBills());
+      await dispatch(listBillsAPI({}));
     } else {
-      dispatch(clearBills());
-      dispatch(listBillsAPI({ title }));
+      await dispatch(changeTitle(search));
+      await dispatch(clearBills());
+      await dispatch(listBillsAPI({ title: search }));
     }
-  }, [title]);
+  };
 
   useEffect(() => {
     dispatch(listBillsAPI({ title }));
@@ -51,8 +49,8 @@ export default function useListFronts({ navigation }: Props) {
     fronts: bills,
     loading: listBillsLoading,
     hasMoreBills,
-    title,
-    setTitle,
+    search,
+    setSearch,
     onReadFront,
     onLoadMore,
     onSearch,

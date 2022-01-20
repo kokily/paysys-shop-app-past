@@ -7,7 +7,7 @@ import { removeCartAPI, removeOneCartAPI, viewCartAPI } from '../api/cart';
 import { clearCart } from '../modules/cart';
 
 interface Props {
-  navigation: NativeStackNavigationProp<RootStackParamList>;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Cart'>;
 }
 
 export default function useCart({ navigation }: Props) {
