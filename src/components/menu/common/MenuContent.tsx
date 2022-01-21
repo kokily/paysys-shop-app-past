@@ -28,6 +28,7 @@ const MenuContent: React.FC<Props> = ({ menu, price, count, setCount }) => (
             borderBottomWidth: 0,
           }}
           autoCompleteType="off"
+          keyboardType="number-pad"
         />
       </Col>
     </Row>

@@ -25,10 +25,7 @@ const MenuTop: React.FC<Props> = ({ menu, price, setPrice }) => (
       <Col size={30}>
         <Text style={styles.contentText}>단 가</Text>
       </Col>
-      <Col
-        size={70}
-        style={menu.price === 0 ? { height: 40 } : {}}
-      >
+      <Col size={70} style={menu.price === 0 ? { height: 40 } : {}}>
         {menu.price === 0 ? (
           <Input
             placeholder="단가를 입력하세요"
@@ -38,6 +35,7 @@ const MenuTop: React.FC<Props> = ({ menu, price, setPrice }) => (
             style={styles.input}
             inputContainerStyle={{ borderBottomWidth: 0 }}
             autoCompleteType="off"
+            keyboardType="number-pad"
           />
         ) : (
           <Text style={styles.contentText}>

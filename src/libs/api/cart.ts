@@ -52,6 +52,7 @@ export const removeOneCartAPI = createAsyncThunk(
   async (item_id: string, { rejectWithValue }) => {
     try {
       const response = await client.patch(`/cart/${item_id}`);
+      return response.data;
     } catch (err: any) {
       return rejectWithValue(err.response.data);
     }

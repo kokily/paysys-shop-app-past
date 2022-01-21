@@ -48,6 +48,10 @@ export default function useMenuDetail({ navigation, route }: Props) {
 
   useEffect(() => {
     dispatch(readMenuAPI(id));
+
+    return () => {
+      dispatch(clearMenu());
+    };
   }, [dispatch]);
 
   useEffect(() => {
