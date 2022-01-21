@@ -20,12 +20,13 @@
       "supportsTablet": true
     },
     "android": {
-      "versionCode": 2,
+      "versionCode": 3,
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#52F9D1"
       },
-      "package": "com.paysysshopapp"
+      "package": "com.paysysshopappv",
+      "permissions": []
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
