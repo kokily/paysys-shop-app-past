@@ -2,12 +2,20 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet } from 'react-native';
 import LoginScreen from '../../screens/LoginScreen';
+import WelcomeScreen from '../../screens/WelcomeScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function LoginNavigator() {
   return (
     <Stack.Navigator>
+      <Stack.Screen
+        name="Welcome"
+        component={WelcomeScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
       <Stack.Screen
         name="Login"
         component={LoginScreen}

@@ -5,6 +5,7 @@ interface MeType {
 }
 
 type RootStackParamList = {
+  Welcome: undefined;
   Login: undefined;
   SoldierHome: undefined;
   ReserveHome: undefined;
